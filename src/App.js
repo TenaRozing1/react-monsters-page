@@ -14,11 +14,12 @@ const App = () => {
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users") // fetch from API
       // when i fetched that it is a promise
-      .then((response) => response.json())
+      .then((response) => response.json()) // parsirani podatci
       .then((users) => setMonsters(users));
   }, []); // in callback goes code that we want to happen inside our function component
-  // posto pozivan fetch tj. dohvacam podatke s apija potrebno je samo ednom na mount da se dogodi, zato je array of dependencies prazan
-
+  // posto pozivam fetch tj. dohvacam podatke s apija potrebno je samo jednom na mount da se dogodi, zato je array of dependencies prazan
+  // array of dependencies je prazan u ovom slucaju jer se izvrsava dohvacanje s apija samo, to je prikladno za operacije koje se trebaju izvršiti samo jednom prilikom mountanja komponente.
+  // prazan array of dependencies osigurava da se ovaj efekt izvrši samo jednom nakon prvog renderiranja.
   useEffect(() => {
     // kad god se updatea monsters i searchfield treba se izvrsiti funkcija u tom useEffectu
     const newFilteredMonsters = monsters.filter((monster) => {
